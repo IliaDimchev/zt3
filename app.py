@@ -117,7 +117,7 @@ def index():
         except Exception as e:
             flash("Exception:", e)
 
-        flash('Благодарим ти, ще се свържем с теб скоро!', 'success')
+        flash('Благодарим Ви! Ще се свържем с Вас съвсем скоро!', 'success')
         return redirect(url_for('index'))
     return render_template('index.html')
 

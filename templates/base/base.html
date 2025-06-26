@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}TROT.BG{% endblock %}</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0f0f0f',
+                        light: '#f3f4f6',
+                        gold: '#eab308', // или '#FFD700' ако искаш по-ярко
+                    }
+                }
+            }
+        }
+    </script>
+
+    {% block head_extra %}{% endblock %}
+</head>
+
+<body class="bg-dark text-light min-h-screen flex flex-col">
+
+    <header class="sticky top-0 bg-neutral-800 shadow-md z-50">
+        <div class="max-w-5xl mx-auto p-4 flex items-center justify-between">
+            <div class="flex flex-row gap-1 items-center">
+                <a href="/"><img src="{{ url_for('static', filename='Trot-Logo.png') }}" alt="TROT Logo"
+                        class="h-12"></a>
+
+                <h2 class="font-bold">TROT</h2>
+                <h2 class="hidden sm:block"> - Ремонт на Електрически Тротинетки и Колела</h2>
+            </div>
+
+            <!-- <nav class="flex gap-2 hidden sm:block">
+                <a href="#">Home</a>
+                <a href="#">Admin</a>
+                <a href="#">Contact</a>
+            </nav> -->
+
+            <!-- <div class="hidden">
+                <a href="#">Menu</a>
+            </div> -->
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="space-y-2">
+        {% for category, message in messages %}
+        <div class="bg-red-600 text-white px-4 py-2 rounded shadow">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <main class="flex-grow container mx-auto p-4 content-center">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-dark border-t border-gold text-center text-sm text-light py-4">
+        TROT.BG © 2025 Всички права запазени!
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+/instance
+.env
+.htaccess
+.well-known/
+passenger_wsgi.py
+stderr.log
+tmp/
+__pycache__
+main.py

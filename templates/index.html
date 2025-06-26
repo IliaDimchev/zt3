@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Отключване на Скутери</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-red-700 text-white p-6 text-center">
+    <h1 class="text-3xl font-bold">🚀 Отключване на скоростта за Segway ZT3 Pro 🛴💨</h1>
+    <p class="mt-2">Бързо, лесно, дистанционно — 10-15 минути през телефона!</p>
+  </header>
+
+  <main class="max-w-4xl mx-auto p-6 bg-white mt-6 rounded-xl shadow-md">
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">🎯 Какво предлагаме?</h2>
+      <p>Съдействаме по <strong>Viber</strong> за отключване на скоростта на електрически Скутери
+        <strong>Segway ZT3 Pro</strong> до 40 км/ч!
+      </p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">📱 Как работи услугата?</h2>
+      <ol class="list-decimal list-inside">
+        <li>Предоставяме ви код за отключване</li>
+        <li>Въвеждате кода през приложение</li>
+        <li>Чакате да се инсталира софтуера</li>
+        <li>Активирате го чрез комбинация</li>
+      </ol>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">⚖️ Ползи и недостатъци от отключването на скоростта</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="font-bold">Плюсове:</h3>
+          <p>✅ По-висока максимална скорост</p>
+          <p>✅ По-мощно и бързо ускорение</p>
+          <p>✅ Фабрично предвиден за това</p>
+          <p>✅ 100% работещо отключване</p>
+          <p>✅ Може да се връща стоково</p>
+          <p>✅ Без нужда от разглобяване</p>
+          <p>✅ Гаранцията му се запазва</p>
+
+        </div>
+        <div>
+          <h3 class="font-bold">Минуси:</h3>
+          <p>➖ По-малък пробег на Sport режима</p>
+          <p>➖ По-кратък живот на батерията</p>
+          <p>➖ Отключването го прави нелегален</p>
+          <p>➖ Услугата се заплаща предварително</p>
+          <p>➖ Активира се при всяко пускане</p>
+          <p>➖ Без опция за връщане на парите</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">💡 Какво ще ни е нужно?</h2>
+      <ul class="list-disc list-inside">
+        <li>Смартфон Apple/Android</li>
+        <li>Да сте близо до скутера</li>
+        <li>Да следвате нашите стъпки</li>
+      </ul>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">🤔 Последици от отключването</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h3 class="font-bold">Преди:</h3>
+          <p>👉 <strong>До 25 км/ч</strong> максимална скорост</p>
+          <p>👉 <strong>До 50 км</strong> пробег на Sport</p>
+          <p>👉 <strong>До 70 км</strong> пробег на Eco</p>
+          <p>👉 Евпропейска версия</p>
+        </div>
+        <div>
+          <h3 class="font-bold">След:</h3>
+          <p>⚡ <strong>До 40 км/ч</strong> максимална скорост</p>
+          <p>🔴 <strong>До 30 км</strong> пробег на Sport</p>
+          <p>🟢 <strong>До 70 км</strong> пробег на Eco</p>
+          <p>🗽 Американска версия</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">💳 Цена и начини на плащане</h2>
+      <p>Цената е <strong>125 евро / 245 лева</strong> (може и в натура). Приемаме плащания по EasyPay, банкова сметка, Еконт и Спиди.</p>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">⭐️⭐️⭐️⭐️⭐️ Гаранция за качество</h2>
+      <p>Отключвали сме доста на брой <strong>Segway ZT3 Pro</strong> електрически скутери, затова
+        за ваше успокоение бихме ви върнали парите, в случай че отключването не сработи - не сме имали такъв случай
+        досега!
+        Всеки предоставен код е уникален и може да отключи само една тротинетка, защо пък да не бъде точно твоята?
+      </p>
+    </section>
+
+    <section id="contact" class="mb-6">
+      <h2 class="text-2xl font-semibold mb-4">📩 Пишете ни, не хапем!</h2>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="mb-4">
+        {% for category, message in messages %}
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded">
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+      <form action="{{ url_for('index') }}#contact" method="POST" class="grid gap-4">
+        <input type="text" name="name" placeholder="Име" required class="p-2 border rounded">
+        <input type="email" name="email" placeholder="Имейл" required class="p-2 border rounded">
+        <input type="text" name="phone" placeholder="Телефон" pattern="^(\+359|0)?8[789]\d{7}$" required class="p-2 border rounded">
+        <textarea name="message" placeholder="Съобщение" required class="p-2 border rounded h-32"></textarea>
+        <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Изпрати</button>
+      </form>
+    </section>
+  </main>
+</body>
+
+</html>

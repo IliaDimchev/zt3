@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <form method="POST" class="bg-white p-6 rounded shadow w-80">
+    <h1 class="text-xl font-bold mb-4">🔐 Админ Вход</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="mb-2 text-sm text-red-600">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    <input name="username" placeholder="Потребителско име" class="w-full p-2 mb-3 border rounded" required>
+    <input name="password" type="password" placeholder="Парола" class="w-full p-2 mb-4 border rounded" required>
+    <button class="bg-blue-600 text-white px-4 py-2 w-full rounded hover:bg-blue-700">Влез</button>
+  </form>
+</body>
+</html>

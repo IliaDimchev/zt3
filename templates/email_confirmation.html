@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+            color: #333;
+        }
+        .email-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <img src="cid:logo" class="logo" alt="TROT Logo">
+        <p>Здравейте, {{ name }}!</p>
+        <p>Благодарим ви, че се свързахте с нас. Ще ви отговорим възможно най-скоро.</p>
+        <p>Поздрави,<br>TROT.BG</p>
+        <img src="https://trot.bg/static/pixel.png" width="1" height="1" style="display:none">
+    </div>
+</body>
+</html>

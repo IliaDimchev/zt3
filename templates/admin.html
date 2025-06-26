@@ -32,7 +32,7 @@
           <td class="border p-2">{{ contact.phone }}</td>
           <td class="border p-2 whitespace-pre-wrap">{{ contact.message }}</td>
           <td>
-            <form action="{{ url_for('delete_request', request_id=req.id) }}" method="post" class="mt-2">
+            <form action="{{ url_for('delete_request', request_id=contact.id) }}" method="post" class="mt-2">
               <button type="submit" class="text-sm text-red-400 hover:underline">Идтрий</button>
             </form>
           </td>

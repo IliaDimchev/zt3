@@ -92,7 +92,7 @@ def index():
             formatted_sender = formataddr((sender_name, sender_email))
 
             admin_msg = Message(
-            subject=str(Header(f"Request from {name} - TROT", 'utf-8')),
+            subject=str(Header(f"Запитване от {name} - Segway ZT3 Pro", 'utf-8')),
             recipients=["dimchev.ilia@gmail.com"],
             body=f"Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}",
             sender=formatted_sender,
@@ -101,14 +101,14 @@ def index():
             mail.send(admin_msg)
 
             confirmation = Message(
-            subject=str(Header("TROT.BG - Request Received", 'utf-8')),
+            subject=str(Header("Потвърждение за получено запитване!", 'utf-8')),
             recipients=[email],
             sender=formatted_sender,
             charset='utf-8')
             
             confirmation.body = (
             f"Здравейте, {name}!\n\n"
-            "Благодарим, че се свързахте с нас. Ще се свържем с вас възможно най-скоро.\n\n"
+            "Благодарим, че се свързахте с нас. Ще се свържем с вас относно отключването на скоростта на Segway ZT3 Pro до 40 км/ч съвсем скоро!.\n\n"
             "Поздрави,\nTROT.BG")
 
             confirmation.html = render_template("email_confirmation.html", name=name)

@@ -12,6 +12,17 @@
     <h1 class="text-2xl font-bold mb-4">📋 Получени запитвания</h1>
     <a href="{{ url_for('export_csv') }}"
       class="mb-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">⬇️ Експортирай CSV</a>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="mb-4">
+      {% for category, message in messages %}
+      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded">
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
     <table class="w-full table-auto border-collapse">
       <thead>
         <tr class="bg-gray-200">

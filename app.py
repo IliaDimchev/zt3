@@ -180,15 +180,11 @@ def home():
         return redirect(url_for("thank_you"))
     return render_template("index.html", timestamp=time.time())
 
-@app.route("/thank-you")
-def thank_you():
-    return render_template("thank_you.html")
-
 @app.route("/admin")
 @login_required
 def admin_panel():
-    requests = ServiceRequest.query.order_by(ServiceRequest.id.desc()).all()
-    return render_template("admin.html", requests=requests)
+    contacts = ServiceRequest.query.order_by(ServiceRequest.id.desc()).all()
+    return render_template("admin.html", contacts=contacts)
 
 @app.route("/admin/delete/<int:request_id>", methods=["POST"])
 @login_required
@@ -204,7 +200,7 @@ def delete_request(request_id):
 def export_csv():
     output = io.StringIO()
     writer = csv.writer(output)
-    writer.writerow(["ID", "Име", "Имейл", "Съобщение"])
+    writer.writerow(["ID", "Име", "Имейл",  "Телефон", "Съобщение"])
 
     for req in ServiceRequest.query.all():
         writer.writerow([req.id, req.name, req.email, req.phone, req.message])

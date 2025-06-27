@@ -72,9 +72,9 @@ def logout():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        # if request.form.get("website"):  # honeypot
-        #     print("SPAM: Honeypot triggered")
-        #     return redirect(url_for("index"))        
+        if request.form.get("website"):  # honeypot
+            print("SPAM: Honeypot triggered")
+            return redirect(url_for("index"))        
         
         name = request.form.get("name")
         email = request.form.get("email")

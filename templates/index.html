@@ -116,9 +116,12 @@
       {% endif %}
       {% endwith %}
       <form action="{{ url_for('index') }}#contact" method="POST" class="grid gap-4">
+        <input type="hidden" name="form_start" value="{{ timestamp }}">
+        <input type="text" name="website" style="display:none">
         <input type="text" name="name" placeholder="Име" required class="p-2 border rounded">
         <input type="email" name="email" placeholder="Имейл" required class="p-2 border rounded">
-        <input type="text" name="phone" placeholder="Телефон" pattern="^(\+359|0)?8[789]\d{7}$" required class="p-2 border rounded">
+        <input type="text" name="phone" placeholder="Телефон" pattern="^(\+359|0)?8[789]\d{7}$" required
+          class="p-2 border rounded">
         <textarea name="message" placeholder="Съобщение" required class="p-2 border rounded h-32"></textarea>
         <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Изпрати</button>
       </form>

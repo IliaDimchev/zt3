@@ -119,7 +119,7 @@ def index():
 
         flash('Благодарим Ви! Ще се свържем с Вас съвсем скоро!', 'success')
         return redirect(url_for('index'))
-    return render_template('index.html')
+    return render_template("index.html", timestamp=time.time())
 
 @app.route("/", methods=["GET", "POST"])
 def home():

@@ -4,6 +4,7 @@ from flask_mail import Mail, Message
 from flask_login import LoginManager, login_user, login_required, logout_user, UserMixin
 from email.header import Header
 from email.utils import formataddr
+import requests
 import time
 import os
 import csv
@@ -26,6 +27,8 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USERNAME'] = os.environ.get("SENDER_EMAIL")
 app.config['MAIL_PASSWORD'] = os.environ.get('SENDER_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.environ.get("SENDER_EMAIL")
+RECAPTCHA_SECRET_KEY = os.environ.get("RECAPTCHA_SECRET_KEY")
+RECAPTCHA_SITE_KEY = os.environ.get("RECAPTCHA_SITE_KEY")
 
 mail = Mail(app)
 
@@ -74,8 +77,28 @@ def index():
     if request.method == 'POST':
         if request.form.get("website"):  # honeypot
             print("SPAM: Honeypot triggered")
-            return redirect(url_for("index"))        
+            return redirect(url_for("index"))
+                
+        try:
+            start_time = float(request.form.get("form_start", 0))
+            if time.time() - start_time < 2:
+                print("SPAM: Too fast")
+                return redirect(url_for("index"))
+        except ValueError:
+            return redirect(url_for("index"))
         
+        recaptcha_response = request.form.get('g-recaptcha-response')
+        verify_url = "https://www.google.com/recaptcha/api/siteverify"
+        resp = requests.post(verify_url, data={
+             'secret': RECAPTCHA_SECRET_KEY,
+             'response': recaptcha_response
+        })
+        recaptcha_result = resp.json()
+        
+        if not recaptcha_result.get("success"):
+            flash("Неуспешна проверка от reCAPTCHA. Моля, опитайте отново.", "error")
+            return redirect(url_for("index"))        
+
         name = request.form.get("name")
         email = request.form.get("email")
         phone = request.form.get("phone")
@@ -119,66 +142,7 @@ def index():
 
         flash('Благодарим Ви! Ще се свържем с Вас съвсем скоро!', 'success')
         return redirect(url_for('index'))
-    return render_template("index.html", timestamp=time.time())
-
-@app.route("/", methods=["GET", "POST"])
-def home():
-    if request.method == "POST":
-        if request.form.get("website"):  # honeypot
-            print("SPAM: Honeypot triggered")
-            return redirect(url_for("thank_you"))
-
-        try:
-            start_time = float(request.form.get("form_start", 0))
-            if time.time() - start_time < 2:
-                print("SPAM: Too fast")
-                return redirect(url_for("thank_you"))
-        except ValueError:
-            return redirect(url_for("thank_you"))
-
-        name = request.form.get("name")
-        email = request.form.get("email")
-        phone = request.form.get("phone")
-        message = request.form.get("message")
-
-        new_request = ServiceRequest(name=name, email=email, phone=phone, message=message)
-        db.session.add(new_request)
-        db.session.commit()
-
-        try:
-            # Красив "From" адрес
-            sender_name = str(Header("TROT.BG", 'utf-8'))
-            sender_email = os.environ.get("SENDER_EMAIL")
-            formatted_sender = formataddr((sender_name, sender_email))
-
-            admin_msg = Message(
-            subject=str(Header(f"Request from {name} - TROT", 'utf-8')),
-            recipients=["dimchev.ilia@gmail.com"],
-            body=f"Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}",
-            sender=formatted_sender,
-            charset='utf-8')
-
-            mail.send(admin_msg)
-
-            confirmation = Message(
-            subject=str(Header("TROT.BG - Request Received", 'utf-8')),
-            recipients=[email],
-            sender=formatted_sender,
-            charset='utf-8')
-            
-            confirmation.body = (
-            f"Здравейте, {name}!\n\n"
-            "Благодарим, че се свързахте с нас. Ще се свържем с вас възможно най-скоро.\n\n"
-            "Поздрави,\nTROT.BG")
-
-            confirmation.html = render_template("email_confirmation.html", name=name)
-
-            mail.send(confirmation)
-        except Exception as e:
-            print("Exception:", e)
-        
-        return redirect(url_for("thank_you"))
-    return render_template("index.html", timestamp=time.time())
+    return render_template("index.html", timestamp=time.time(), recaptcha_site_key=RECAPTCHA_SITE_KEY)
 
 @app.route("/admin")
 @login_required

@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Отключване на Скутери</title>
+  <title>Отключване на Segway ZT3 Pro до 40 км/ч - TROT.BG</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.google.com/recaptcha/api.js?remder=explicit&hl=bg" async defer></script>
 </head>
 
 <body class="bg-gray-100 text-gray-800">
@@ -123,6 +124,7 @@
         <input type="text" name="phone" placeholder="Телефон" pattern="^(\+359|0)?8[789]\d{7}$" required
           class="p-2 border rounded">
         <textarea name="message" placeholder="Съобщение" required class="p-2 border rounded h-32"></textarea>
+        <div class="g-recaptcha" data-sitekey="{{ recaptcha_site_key }}"></div>
         <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Изпрати</button>
       </form>
     </section>
